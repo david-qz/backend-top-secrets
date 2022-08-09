@@ -33,10 +33,7 @@ describe('/api/v1/users', () => {
         const [agent] = await registerAndLogin(mockUser);
 
         const response = await agent.delete('/api/v1/users/sessions');
-        expect(response.status).toEqual(200);
-        expect(response.body).toEqual({
-            message: 'Signed out successfully!'
-        });
+        expect(response.status).toEqual(204);
     });
 
     afterAll(() => {
