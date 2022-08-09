@@ -5,7 +5,7 @@ drop table if exists secrets;
 
 create table users (
     id bigint generated always as identity primary key,
-    email text not null,
+    email text not null unique,
     password_hash text not null
 );
 
