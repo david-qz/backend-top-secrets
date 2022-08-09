@@ -49,6 +49,16 @@ describe('/api/v1/users', () => {
         });
     });
 
+    it('DELETE /api/v1/users/session should log a user out', async () => {
+        const [agent] = await registerAndLogin(mockUser);
+
+        const response = await agent.delete('/api/v1/users/sessions');
+        expect(response.status).toEqual(200);
+        expect(response.body).toEqual({
+            message: 'Signed out successfully!'
+        });
+    });
+
     afterAll(() => {
         pool.end();
     });
