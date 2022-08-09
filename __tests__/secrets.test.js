@@ -28,6 +28,36 @@ describe('/api/v1/secrets', () => {
         expect(response.status).toEqual(401);
     });
 
+    it('POST /api/v1/secrets should create and return a new secret', async () => {
+        const [agent] = await registerAndLogin(mockUser);
+
+        const message = {
+            title: 'Urgent!',
+            description: 'Does anybody know where I put my lunchbox?'
+        };
+
+        const response = await agent.post('/api/v1/secrets').send(message);
+        expect(response.status).toEqual(200);
+
+        const secret = response.body;
+        expect(secret).toEqual({
+            id: expect.any(String),
+            title: expect.any(String),
+            description: expect.any(String),
+            createdAt: expect.any(String),
+        });
+    });
+
+    it('POST /api/v1/secrets should fail if user isn\'t logged in', async () => {
+        const message = {
+            title: 'Urgent!',
+            description: 'Does anybody know where I put my lunchbox?'
+        };
+
+        const response = await request(app).post('/api/v1/secrets').send(message);
+        expect(response.status).toEqual(401);
+    });
+
     afterAll(() => {
         pool.end();
     });
