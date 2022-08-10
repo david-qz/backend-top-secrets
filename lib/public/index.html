@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./styles.css" rel="stylesheet" >
+    <title>Top Secrets</title>
+</head>
+<body>
+    <main>
+        <h1>Top Secrets</h1>
+        <p>A web API for sharing secrets among authenticated users.</p>
+        <h2>Routes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <td>Route</td>
+                    <td>Request Payload</td>
+                    <td>Description</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="mono">POST /api/v1/users</td>
+                    <td class="mono">{ email, password }</td>
+                    <td>Registers a new user.</td>
+                </tr>
+                <tr>
+                    <td class="mono">POST /api/v1/users/sessions</td>
+                    <td class="mono">{ email, password }</td>
+                    <td>Log in as user.</td>
+                </tr>
+                <tr>
+                    <td class="mono">DELETE /api/v1/users/sessions</td>
+                    <td class="mono">none</td>
+                    <td>Log out. If there is no user session, does nothing.</td>
+                </tr>
+                <tr>
+                    <td class="mono">GET /api/v1/secrets</td>
+                    <td class="mono">none</td>
+                    <td>Get a list of all secrets being shared. Only available when logged in.</td>
+                </tr>
+                <tr>
+                    <td class="mono">POST /api/v1/secrets</td>
+                    <td class="mono">{ title, description }</td>
+                    <td>Create a new secret to share with other users. Only available when logged in.</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
