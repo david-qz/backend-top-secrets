@@ -20,6 +20,12 @@ describe('/api/v1/users', () => {
         });
     });
 
+    it('POST /api/v1/users should reject sign ups without defense.gov email', async () => {
+        const unauthorizedUser = { ...mockUser, email: 'test@test.com' };
+        const response = await request(app).post('/api/v1/users').send(unauthorizedUser);
+        expect(response.status).toEqual(401);
+    });
+
     it('POST /api/v1/users/sessions should log a user in', async () => {
         const [,, signInResponse] = await registerAndLogin(mockUser);
 
